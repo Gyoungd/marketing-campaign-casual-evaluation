@@ -14,7 +14,6 @@ to estimate the **incremental impact** of communication channels and campaign ti
 
 The objective is to determine whether observed performance diffferences are statistically improve and casually defensible, supporting data-driven campaign optimisation decisions.
 
----
 
 ## Business Context
 Marketing teams often compare campaign performance using raw conversion rates. However, such comparisions may be biased due to:
@@ -30,13 +29,13 @@ This project address the following business questions:
 3. Does campaign timing produce incremental casual impact?
 4. What strategic recommendation should be made for future campaigns?
 
-Primary KPI:
+**Primary KPI**
 * Conversion rate (binary outcome)
 
----
 
 ## Dataset
-Portugese Bank Marketing Dataset
+Portuges Bank Marketing Dataset (UCI Machine Learning Repository)
+
 * ~41,000 observations
 * Direct marketing campaign outcomes
 * Customer demographics and campaign features
@@ -46,11 +45,11 @@ Portugese Bank Marketing Dataset
 
 **Key explanatory variables**
 * contact method
-* month
+* month (campaign timing)
 * customer characteristics (age, job, marital, education, loan status, etc.)
 * previous campaign interactions
+* Macroeconomic indicators
 
----
 
 ## Methodology
 
@@ -60,9 +59,8 @@ Portugese Bank Marketing Dataset
 * Computed confidence intervals
 
 **Purpose**
-To establish baseline performance difference without adjustment.
+Establish baseline performance difference without adjustment.
 
----
 
 ### 2. Logistic Regression (Confounder Adjustment)
 
@@ -88,15 +86,15 @@ This step evaluates whether channel performance remains significant after accoun
 
 **Model**
 
-conversion ~ treated + post + treated * post
+conversion ~ treated + post + treated x post
 
 The interaction term estimates incremental treatment impact under the parallel trends assumption.
 
 **Purpose**
 
-To assess whether timing effects create casual performance shifts.
+Assess whether timing effects create casual performance shifts.
 
----
+
 
 ## Key Findings
 
@@ -105,7 +103,6 @@ To assess whether timing effects create casual performance shifts.
 * Difference-in-Differences analysis suggests measurable incremental impact associated with timing-channel interaction.
 * Results highlight the importance of casual validation before large-scale rollout decisions.
 
----
 
 ## Business Implications
 
@@ -114,7 +111,6 @@ To assess whether timing effects create casual performance shifts.
 * Incorporate casual frameworks in campaign evaluatrion pipelines.
 * Avoid decision-making based solely on descriptive statistics.
 
----
 
 ## Limitations
 
@@ -127,8 +123,8 @@ To assess whether timing effects create casual performance shifts.
 * Instrumental variable analysis
 * Propensity score matching
 * Robustness checks with cross-validation
+* Uplift modelling for individual-level treatment effect estimation
 
----
 
 ## Tech Stack
 
@@ -137,4 +133,18 @@ Pandas
 Statsmodels
 Scikit-learn
 Matplotlib / Seaborn
+
+
+## Data Access
+
+The dataset used in this project is provided by StrataScratch for educational purposes.
+
+Due to licensing restrictions, the raw dataset is not included in this repository.
+
+To reproduce the analysis:
+1. Download the dataset from the UCI Machine Learning Repository.
+2. Place the CSV file inside the `/data` directory.
+3. Run the notebooks in sequential order.
+
+This project is intended for analytical demonstration purposes only.
 
