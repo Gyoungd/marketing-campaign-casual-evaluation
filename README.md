@@ -2,7 +2,7 @@
 ### A/B Testing, Regression Adjustment, and Difference-in-Differences (DiD)
 
 ## Executive Summary
-This project evaluates the effectiveness of a direct marketing campaign using strctured casual analysis techniques.
+This project evaluates the effectiveness of a direct marketing campaign using strctured causal analysis techniques.
 
 Rather than relying solely on naïve conversion rate comparisions, the analysis applies:
 
@@ -12,7 +12,7 @@ Rather than relying solely on naïve conversion rate comparisions, the analysis 
 
 to estimate the **incremental impact** of communication channels and campaign timing on customer conversion.
 
-The objective is to determine whether observed performance diffferences are statistically improve and casually defensible, supporting data-driven campaign optimisation decisions.
+The objective is to determine whether observed performance diffferences are statistically improve and causally defensible, supporting data-driven campaign optimisation decisions.
 
 
 ## Business Context
@@ -26,7 +26,7 @@ Marketing teams often compare campaign performance using raw conversion rates. H
 This project address the following business questions:
 1. Deos communication channel (cellular vs telephone) significantly affect conversion rate?
 2. Is the observed difference robust after controlling for customer characteristics?
-3. Does campaign timing produce incremental casual impact?
+3. Does campaign timing produce incremental causal impact?
 4. What strategic recommendation should be made for future campaigns?
 
 **Primary KPI**
@@ -92,7 +92,7 @@ The interaction term estimates incremental treatment impact under the parallel t
 
 **Purpose**
 
-Assess whether timing effects create casual performance shifts.
+Assess whether timing effects create causal performance shifts.
 
 
 
@@ -101,14 +101,14 @@ Assess whether timing effects create casual performance shifts.
 * Cellular contact shows higher baseline conversion rate compared to telephone.
 * Regression-adjusted estimates confirm that channel effect remains statistically significant after controlling for demographic and behavioural variables.
 * Difference-in-Differences analysis suggests measurable incremental impact associated with timing-channel interaction.
-* Results highlight the importance of casual validation before large-scale rollout decisions.
+* Results highlight the importance of causal validation before large-scale rollout decisions.
 
 
 ## Business Implications
 
 * Prioritise higher-performing communication channels for budget allocation.
 * Validate performance differences using regression-based controls rather than raw comparison.
-* Incorporate casual frameworks in campaign evaluatrion pipelines.
+* Incorporate causal frameworks in campaign evaluatrion pipelines.
 * Avoid decision-making based solely on descriptive statistics.
 
 
