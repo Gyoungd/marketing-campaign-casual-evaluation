@@ -1,22 +1,20 @@
-# Causal Evaluation of Marketing Campaign Performance
-### A/B Testing, Regression Adjustment, and Difference-in-Differences (DiD)
+# Causal-Oriented Evaluation of Marketing Campaign Performance A/B Testing and Regression Adjustment
 
 ## Executive Summary
-This project evaluates the effectiveness of a direct marketing campaign using strctured causal analysis techniques.
+This project evaluates the effectiveness of a direct marketing campaign using structured causal analysis techniques.
 
-Rather than relying solely on naïve conversion rate comparisions, the analysis applies:
+Rather than relying solely on naïve conversion rate comparisons, the analysis applies:
 
 * A/B testing (proportion tests)
 * Logistic regression with confounder adjustment
-* Difference-in-Differences (DiD)
 
-to estimate the **incremental impact** of communication channels and campaign timing on customer conversion.
+to estimate the association between communication channels and customer conversion, while accounting for observable confounders and timing heterogeneity.
 
-The objective is to determine whether observed performance diffferences are statistically improve and causally defensible, supporting data-driven campaign optimisation decisions.
+The objective is to determine whether observed performance differences are statistically improved and causally defensible, supporting data-driven campaign optimisation decisions.
 
 
 ## Business Context
-Marketing teams often compare campaign performance using raw conversion rates. However, such comparisions may be biased due to:
+Marketing teams often compare campaign performance using raw conversion rates. However, such comparisons may be biased due to:
 
 * Customer selection effects
 * Channel allocation differences
@@ -26,7 +24,7 @@ Marketing teams often compare campaign performance using raw conversion rates. H
 This project address the following business questions:
 1. Deos communication channel (cellular vs telephone) significantly affect conversion rate?
 2. Is the observed difference robust after controlling for customer characteristics?
-3. Does campaign timing produce incremental causal impact?
+3. Does campaign timing moderate the association between contact method and conversion?
 4. What strategic recommendation should be made for future campaigns?
 
 **Primary KPI**
@@ -34,7 +32,7 @@ This project address the following business questions:
 
 
 ## Dataset
-Portuges Bank Marketing Dataset (UCI Machine Learning Repository)
+Portuguese Bank Marketing Dataset (UCI Machine Learning Repository)
 
 * ~41,000 observations
 * Direct marketing campaign outcomes
@@ -76,10 +74,10 @@ conversion ~ contact + age + job + loan + previous + macro variables
 
 This step evaluates whether channel performance remains significant after accounting for customer heterogeneity.
 
-### 3. Timing Effect and Interaction Analysis (Quasi-Experimental Check)
+### 3. Timing Effect and Interaction Analysis
 
 **Motivation**
-While the dataset does not provide an explicit channel policy change timestamp, we assess whether channel performance varies across campaign timing segments. This serves as a quasi-experiemntal robustness check.
+While the dataset does not provide an explicit channel policy change timestamp, we assess whether channel performance varies across campaign timing segments. This serves as a robustness check to assess timing heterogeneity.
 
 **Model**
 ` conversion ~ contact + C(month) + contact x C(month) + controls`
@@ -93,29 +91,27 @@ While the dataset does not provide an explicit channel policy change timestamp, 
 **Interpretation**
 Interaction coefficients capture *month-specific deviations* from the baseline channel effect, allowing assessment of temporal variation without assuming a structural policy shift.
 
-This analysis adopts a quasi-experimental perspective by examining channel-time interactions rather than assuming a discrete policy intervention.
-
 ## Key Findings
 
 * Cellular contact shows higher baseline conversion rate compared to telephone.
-* Regression-adjusted estimates confirm that channel effect remains statistically significant after controlling for demographic and behavioural variables.
 * Interaction-based analysis indicates that channel performance varies across campaign timing segments.
 * Results highlight the importance of causal validation before large-scale rollout decisions.
-
+* Regression-adjusted estimates (see [03_logistic_regression.ipynb]('notebooks/03_logistic_regression.ipynb')) indicate a statistically significant positive association between cellular contact and conversion. However, timing heterogeneity analysis (see [04_timing_effect_analysis.ipynb]('notebooks/04_timing_effect_analysis.ipynb')) suggests that this effect is not uniformly persistent across months.
 
 ## Business Implications
 
 * Prioritise higher-performing communication channels for budget allocation.
 * Validate performance differences using regression-based controls rather than raw comparison.
-* Incorporate causal frameworks in campaign evaluatrion pipelines.
+* Incorporate causal frameworks in campaign evaluation pipelines.
 * Avoid decision-making based solely on descriptive statistics.
 
 
 ## Limitations
 
 * Observational dataset (not true randomised experiment)
-* Interaction model assumes stable baseline diffferences across timing segments
+* Interaction model assumes stable baseline differences across timing segments
 * Potential unobserved confounders
+* The dataset does not provide longitudinal indexing across years, preventing formal Difference-in-Differences implementation.
 
 **Future Improvements**
 
