@@ -1,0 +1,2 @@
+test,n_cellular,n_telephone,conv_cellular,conv_telephone,conversion_cellular,conversion_telephone,abs_lift_pct_point,z_stat,p_value,diff_ci_low,diff_ci_high,ci_method
+cellular_vs_telephone,26144,15044,3853,787,0.14737607099143207,0.05231321457059293,9.51,29.381441093790954,9.481264285591046e-190,0.08948409731157633,0.10064161553010195,normal (per-group) + wald (diff)
